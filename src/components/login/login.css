@@ -463,6 +463,19 @@ h2{
   justify-content: center;
 }
 
+.clock-div{
+  margin: 0 auto;
+  border: 1px solid white;
+  border-radius: 4px;
+  width: 190px;
+  display: flex;
+  height: 25px;
+  align-items: center;
+  gap: 6px;
+  padding-left: 10px;
+  color: #ffe5b3;
+}
+
 
 
 
