@@ -11,7 +11,7 @@ import { FaApple } from "react-icons/fa";
 import metamask from "../../assets/metamask-icon.svg";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
-import Countdown from "../Countdown-Timer/Countdown";
+import Countdown from "../countdown-Timer/Countdown";
 
 const Login = () => {
   const [isActive, setIsActive] = useState("email");
