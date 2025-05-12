@@ -36,6 +36,7 @@
 
 
 h2{
+  display: block;
   margin-bottom: 15px;
   font-size: 25px;
   text-align: center;
@@ -416,17 +417,8 @@ h2{
   
 }
 
-.clock-div{
-  margin: 0 auto;
-  border: 1px solid white;
-  border-radius: 4px;
-  width: 180px;
-  display: flex;
-  height: 25px;
-  align-items: center;
-  gap: 6px;
-  padding-left: 10px;
-  color: #ffe5b3;
+h2{
+  display: block;
 }
 
 }
@@ -440,6 +432,10 @@ h2{
 
 .optionDiv{
   justify-content: center;
+}
+
+h2{
+  display: none;
 }
 }
 
@@ -487,6 +483,8 @@ h2{
   margin-bottom: 10px;
   justify-content: center;
 }
+
+
 
 
 
