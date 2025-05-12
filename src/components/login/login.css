@@ -431,6 +431,18 @@ h2{
 
 }
 
+@media(max-width:450px){
+  .qrCode-div{
+ 
+  display:none;
+  
+}
+
+.optionDiv{
+  justify-content: center;
+}
+}
+
 @media (max-width: 400px){
   .afternavdiv{
   padding-top: 20px;
