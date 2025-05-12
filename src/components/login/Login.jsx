@@ -24,7 +24,7 @@ const Login = () => {
     <div className="afternavdiv">
       <div className="secondimage-div">
             <div className="content">
-            <img className="coin-image" src={image} alt="" />
+            <img className="coin-image" src="https://static.mocortech.com/www/static/images/login/reward3-img-dark.png?v=1" alt="" />
             <p className="signupP">Sign Up to Claim</p>
             <p className="signupP" id="usdt">
               8,000 USDT Bonus
