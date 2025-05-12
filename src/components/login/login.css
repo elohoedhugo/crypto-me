@@ -427,6 +427,7 @@ h2{
   gap: 6px;
   padding-left: 10px;
   color: #ffe5b3;
+  border: 2px solid red;
 }
 
 }
