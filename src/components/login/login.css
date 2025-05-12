@@ -443,7 +443,6 @@ h2{
   .afternavdiv{
   padding-top: 20px;
   padding-bottom: 20px;
-  border: 2px solid green;
   font-family: 'Segoe UI',-apple-system;
   margin-inline: auto;
 }
@@ -479,7 +478,6 @@ h2{
 
 .secondimage-div{
   display: flex;
-  border: 2px solid red;
   margin-bottom: 10px;
   justify-content: center;
 }
