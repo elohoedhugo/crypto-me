@@ -51,6 +51,12 @@ h2{
   margin-bottom: 30px;
   color: #6e7583;
 }
+
+.error{
+ color: red;
+ margin-bottom: 10px;
+}
+
 .email{
   position: relative;
   cursor: pointer;
@@ -60,6 +66,24 @@ h2{
 }
 
 .email.active::after{
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 2px;
+  background-color: white;
+  left: 5px;
+  bottom: -14px;
+}
+
+.number{
+  position: relative;
+  cursor: pointer;
+}
+.number.active{
+  color: #f2f4f6;
+}
+
+.number.active::after{
   content: "";
   position: absolute;
   width: 70%;
@@ -109,11 +133,6 @@ h2{
 }
 
 .inputDiv{
-}
-.error{
-  color: red;
-  font-size: 500;
-  margin-bottom: 10px;
 }
 
 .input-wrapper{

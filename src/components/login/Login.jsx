@@ -12,34 +12,75 @@ import metamask from "../../assets/metamask-icon.svg";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import Countdown from "../countdown-Timer/Countdown";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isActive, setIsActive] = useState("email");
   const [showPassword, setShowPassword] = useState(false);
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [activeDiv, setActiveDiv] = useState(false);
+  const [error, setError] = useState("");
+  const [loginAttempted, setLoginAttempted] = useState(false);
+  const [loader, setLoader] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setError("");
+
+    if (!email && !mobile) {
+      setError("Email or Mobile is required");
+      return;
+    }
+
+    if (!password) {
+      setError("Password is required");
+      return;
+    }
+
+    if (!loginAttempted) {
+      setError("Please confirm your login details and try again.");
+      setLoginAttempted(true);
+      return;
+    }
+
+     setLoader(true);
+    setTimeout(()=> {     
+    setError("");
+     setLoader(false);
+    navigate("/otp");
+   
+    }, 3000)
+
+  };
 
   return (
     <div className="afternavdiv">
       <div className="secondimage-div">
-            <div className="content">
-            <img className="coin-image" src="https://static.mocortech.com/www/static/images/login/reward3-img-dark.png?v=1" alt="" />
-            <p className="signupP">Sign Up to Claim</p>
-            <p className="signupP" id="usdt">
-              8,000 USDT Bonus
-            </p>
-            <div className="clock-div">
-              
-              <FaRegClock />
-              <div>
-                <p>Limited-time</p>
-                <span>
-                  <Countdown />
-                </span>
-              </div>
+        <div className="content">
+          <img
+            className="coin-image"
+            src="https://static.mocortech.com/www/static/images/login/reward3-img-dark.png?v=1"
+            alt=""
+          />
+          <p className="signupP">Sign Up to Claim</p>
+          <p className="signupP" id="usdt">
+            8,000 USDT Bonus
+          </p>
+          <div className="clock-div">
+            <FaRegClock />
+            <div>
+              <p>Limited-time</p>
+              <span>
+                <Countdown />
+              </span>
             </div>
           </div>
+        </div>
       </div>
       <div className="main-section">
         <div className="loginDiv">
@@ -64,6 +105,7 @@ const Login = () => {
           </div>
 
           <div className="inputDiv">
+            {error && <p className="error">{error}</p>}
             {isActive === "email" ? (
               <div className="input-wrapper">
                 <FaEnvelope className="input-icon" id="envelope-icon" />
@@ -83,6 +125,7 @@ const Login = () => {
                 <FaEnvelope className="input-icon" id="envelope-icon" />
                 <input
                   type="tel"
+                  inputMode="numeric"
                   className="input"
                   placeholder="Mobile Number"
                   value={`+${mobile}`}
@@ -115,6 +158,11 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 className="input"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  const passInput = e.target.value;
+                  setPassword(passInput);
+                }}
               />
             </div>
 
@@ -132,7 +180,9 @@ const Login = () => {
               <p>Stay logged in on this device for 5 days</p>
             </div>
 
-            <button className="button">Log In</button>
+            <button className="button" onClick={handleSubmit}>
+              {loader? "Verifying...." : "Login"}
+            </button>
             <p className="forgotP">Forgot Password?</p>
             <div className="orDiv">
               <div className="lineDiv"></div>
@@ -158,13 +208,16 @@ const Login = () => {
         </div>
         <div className="imageDiv">
           <div className="content">
-            <img className="coin-image" src="https://static.mocortech.com/www/static/images/login/reward3-img-dark.png?v=1" alt="" />
+            <img
+              className="coin-image"
+              src="https://static.mocortech.com/www/static/images/login/reward3-img-dark.png?v=1"
+              alt=""
+            />
             <p className="signupP">Sign Up to Claim</p>
             <p className="signupP" id="usdt">
               8,000 USDT Bonus
             </p>
             <div className="clock-div">
-              
               <FaRegClock />
               <div>
                 <p>Limited-time</p>
